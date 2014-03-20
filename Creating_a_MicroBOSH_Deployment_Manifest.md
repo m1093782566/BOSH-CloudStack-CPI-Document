@@ -2,6 +2,7 @@
 
 ##Example Manifests
 These examples are designed to illuminate what each IaaS requires in a MicroBOSH deployment manifest.
+
 ###CloudStack
 You can adapt this example to your environment settings.
 You need some settings about your MicroBOSH deployment. Create new directories (usually `deployments` and `deployments/firstbosh`) and write your manifest file using the template below. The manifest file must be saved with the file name `micro_bosh.yml` and in the child directoriy you created.
@@ -51,3 +52,42 @@ cloud:
       user: admin
       password: admin
 ```
+
+###CloudStack SSH Key Pair
+If you have no SSH key Pair registered to your CloudStack, you need generate one to enable SSH access to VM created by BOSH from the Director and CLI.
+If your web console does not provide an interface to generate key pairs. Use the script below:
+```ruby
+#!/usr/bin/env ruby
+require 'yaml'
+require 'uri'
+require 'fog'
+
+settings = YAML.load(File.read(ARGV[0]))
+name = ARGV[1]
+
+endpoint_uri = URI.parse(settings['cloud']['properties']['cloudstack']['endpoint'])
+
+fog_params = {
+  :provider => 'CloudStack',
+  :cloudstack_api_key => settings['cloud']['properties']['cloudstack']['api_key'],
+  :cloudstack_secret_access_key => settings['cloud']['properties']['cloudstack']['secret_access_key'],
+  :cloudstack_scheme => endpoint_uri.scheme,
+  :cloudstack_host => endpoint_uri.host,
+  :cloudstack_port => endpoint_uri.port,
+  :cloudstack_path => endpoint_uri.path,
+}
+
+client = Fog::Compute.new(fog_params)
+
+response = client.create_ssh_key_pair(name)
+puts response['createsshkeypairresponse']['keypair']['privatekey']
+```
+
+You can run this script like:
+
+```
+# <script_name> <path_to_micro_bosh_yml> <key_pair_name>
+./gen_key_pair ~/deployments/firstbosh/micro_bosh.yml bosh_test
+```
+
+And as script shows the private key, save it to the file path specifyed at `private_key` in `micro_bosh.yml`.
