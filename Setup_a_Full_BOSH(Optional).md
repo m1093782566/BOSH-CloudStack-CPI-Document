@@ -1,7 +1,7 @@
 #Setup a Full BOSH (Optional)
 
 ##Sample Templates
-Currently the CloudStack CPI does not support VIP networks and Floating IPs. You need some tricks to deploy releases which require floating IPs such as Full BOSH.
+As CloudStack basic zone does not support VIP networks and Floating IPs. You need some tricks to deploy releases which require floating IPs such as Full BOSH when you use CloudStack basic zone.
 
 For Full BOSH, you need two separate manifest files. One for DNS and another for other jobs.
 
@@ -265,3 +265,11 @@ properties:
     pagerduty_enabled: false
     varz_enabled: true
 ```
+### Deployment Procedure
+
+1. Deploy bosh-dns.yml
+2. Put the IP address of the deployed VM to bosh.yml and bosh-dns.yml
+3. Deploy bosh.yml
+4. Redeploy bosh-dns.yml
+
+You can find the IP address of deployed VMs by the `bosh status` command.
