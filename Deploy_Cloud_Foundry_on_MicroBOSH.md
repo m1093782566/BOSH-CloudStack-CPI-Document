@@ -8,8 +8,8 @@ Upload the source code and related resources of Cloud Foundry to your MicroBOSH.
 # Clone the repository
 git clone https://github.com/cloudfoundry/cf-release.git ~/cf-release
 cd cf-release
-# Upload the latest release (147 at the moment)
-BUNDLE_GEMFILE=~/bosh/Gemfile bundle exec bosh upload release releases/cf-147.yml
+# Upload the latest release (161 at the moment)
+BUNDLE_GEMFILE=~/bosh/Gemfile bundle exec bosh upload release releases/cf-161.yml
 ```
 
 This step takes some time.
