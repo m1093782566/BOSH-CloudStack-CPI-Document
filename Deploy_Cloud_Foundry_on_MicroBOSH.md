@@ -369,3 +369,23 @@ properties:
       - admin|c1oudc0w|scim.write,scim.read,openid,cloud_controller.admin
       - services|c1oudc0w|scim.write,scim.read,openid,cloud_controller.admin
 ```
+
+####Deploy
+
+Speficy the manifest file and execute deploying.
+
+```sh
+BUNDLE_GEMFILE=~/bosh/Gemfile bundle exec bosh deployment ~/cf.yml
+```
+
+Then, deploy it.
+
+```sh
+BUNDLE_GEMFILE=~/bosh/Gemfile bundle exec bosh deploy
+```
+
+You will be able to confirm VMs created for the deployment by the `bosh vms` command.
+
+```sh
+BUNDLE_GEMFILE=~/bosh/Gemfile bundle exec bosh vms
+```
