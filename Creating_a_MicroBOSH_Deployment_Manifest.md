@@ -91,3 +91,25 @@ You can run this script like:
 ```
 
 And as script shows the private key, save it to the file path specifyed at `private_key` in `micro_bosh.yml`.
+
+###CloudStack networking options
+If you are using basic zone, the network block takes the following form:
+
+```yaml
+network:
+  type: dynamic
+    cloud_properties:
+        network_name: <network_name>
+```
+
+If you are using advanced zone, the network block takes the following form:
+```yaml
+network:
+  type: dynamic
+    vip: <static_ip> # Public IP address for MicroBOSH.
+      cloud_properties:
+          network_name: <network_name>
+```
+
+###CloudStack cloud properties
+Some CloudStack cloud properties are explained in the manifest file using comments. You should pay attention to the default_security_groups field in the manifest file as it is only supported in basic zone. You needn't to configure it when you use advanced zone.
