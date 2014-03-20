@@ -34,7 +34,7 @@ director_uuid: 884aab78-3b73-494c-aa6f-b7fe9b2d7e1b # UUID shown by the bosh sta
 
 releases:
  - name: cf
-   version: 147 # Verison number of the uploded release
+   version: 161 # Verison number of the uploded release
 
 networks:
 - name: default
