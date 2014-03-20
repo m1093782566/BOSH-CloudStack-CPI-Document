@@ -1,6 +1,6 @@
-### Deploy Cloud Foundry on MicroBOSH
+# Deploy Cloud Foundry on MicroBOSH
 
-#### Upload a Release
+## Upload a Release
 
 Upload the source code and related resources of Cloud Foundry to your MicroBOSH. The cf-release repository has everything you need.
 
@@ -14,7 +14,7 @@ BUNDLE_GEMFILE=~/bosh/Gemfile bundle exec bosh upload release releases/cf-161.ym
 
 This step takes some time.
 
-#### Upload a Stemcell
+## Upload a Stemcell
 
 Upload a stemcell to your MicroBOSH. You can use the same stemcell file which you used for bootstraping your MicroBOSH.
 
@@ -23,7 +23,7 @@ BUNDLE_GEMFILE=~/bosh/Gemfile bundle exec bosh upload stemcell <path_to_stemcell
 ```
 
 
-#### Describe Manifest
+## Describe Manifest
 
 Create your deployment manifest with the template below and save it whith your prefered name e.g. `cf.yml`.
 
@@ -370,7 +370,7 @@ properties:
       - services|c1oudc0w|scim.write,scim.read,openid,cloud_controller.admin
 ```
 
-####Deploy
+##Deploy
 
 Speficy the manifest file and execute deploying.
 
